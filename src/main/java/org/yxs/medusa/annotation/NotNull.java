@@ -15,5 +15,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotNull {
+    String clazz() default "org.yxs.medusa.validate.NotNullValidate";
     String value() default Message.NOT_NULL;
 }

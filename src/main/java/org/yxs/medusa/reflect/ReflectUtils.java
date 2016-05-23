@@ -1,14 +1,19 @@
 package org.yxs.medusa.reflect;
 
 import org.yxs.medusa.Entity;
-import org.yxs.medusa.annotation.NotNull;
+import org.yxs.medusa.exception.MedusaException;
+import org.yxs.medusa.helper.AnnotationHelper;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by 一线生 on 2016/5/21.
+ *
  */
 public class ReflectUtils {
 
@@ -18,23 +23,33 @@ public class ReflectUtils {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
-            if (!field.isAnnotationPresent(NotNull.class)) continue;
-            set.add(new Entity(field.getAnnotation(NotNull.class), field.get(object)));
+            Class<? extends Annotation> annotationClazz;
+            annotationClazz = AnnotationHelper.choice(field);
+            if (null == annotationClazz) continue;
+            set.add(new Entity(annotationClazz, field.getName(), field.get(object)));
         }
         return set;
     }
 
-    public static <T> T getAnnotation(Object object) {
-        Field[] fields = object.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            field.setAccessible(true);
-            return (T) field.getAnnotation(NotNull.class);
+    public static Object invokeMethod(String className, String methodName, Object ...args) {
+        try {
+            Class<?> clazz = Class.forName(className);
+            Class<?>[] c = new Class<?>[2];
+            c[0] = Object.class;
+            c[1] = Object.class;
+            Method method = clazz.getMethod(methodName, c);
+            return method.invoke(clazz.newInstance(), args);
+
+        } catch (ClassNotFoundException e) {
+            throw new MedusaException(e);
+        } catch (NoSuchMethodException e) {
+            throw new MedusaException(e);
+        } catch (InvocationTargetException e) {
+            throw new MedusaException(e);
+        } catch (IllegalAccessException e) {
+            throw new MedusaException(e);
+        } catch (InstantiationException e) {
+            throw new MedusaException(e);
         }
-        return null;
     }
-
-    public static String getString(String fieldName) {
-        return null;
-    }
-
 }
