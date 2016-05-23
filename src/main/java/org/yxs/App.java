@@ -35,7 +35,7 @@ public class App
             this.passwd = passwd;
         }
     }
-    public static void main( String[] args ) throws IllegalAccessException {
+    public static void main( String[] args ) {
         User user = new User();
         System.out.println();
         Validate validate = new Validate();
