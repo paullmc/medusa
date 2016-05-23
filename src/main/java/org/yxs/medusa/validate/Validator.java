@@ -14,24 +14,24 @@ import java.util.Set;
  * Created by 一线生 on 2016/5/21.
  *
  */
-public class Validate {
+public class Validator {
 
-    public boolean isValidate(Object object) {
-        Set<Medusa> medusas = result(object);
-        for (Medusa medusa : medusas) {
+    public boolean validate(Object object) {
+        Set<Medusa> medusaSet = result(object);
+        for (Medusa medusa : medusaSet) {
             if (!medusa.isFlag()) return false;
         }
         return true;
     }
 
     public Medusa pop(Object object) {
-        Set<Medusa> medusas = result(object);
-        return medusas.iterator().next();
+        Set<Medusa> medusaSet = result(object);
+        return medusaSet.iterator().next();
     }
 
-    public Medusa popFail(Object object) {
-        Set<Medusa> medusas = result(object);
-        for (Medusa medusa : medusas) {
+    public Medusa popDeny(Object object) {
+        Set<Medusa> medusaSet = result(object);
+        for (Medusa medusa : medusaSet) {
             if (!medusa.isFlag()) return medusa;
         }
         return null;
@@ -44,9 +44,7 @@ public class Validate {
             for (Entity entity : entitySet) {
                 Class<? extends Annotation> clazz = entity.getAnnotation();
                 Object className = clazz.getMethod("clazz").getDefaultValue();
-                Object[] params = new Object[2];
-                params[0] = entity.getValue();
-                params[1] = entity.getFieldName() + ":" + clazz.getMethod("value").getDefaultValue();
+                Object[] params = {entity.getValue(), entity.getFieldName() + ":" + clazz.getMethod("value").getDefaultValue()};
                 Object result = ReflectUtils.invokeMethod(String.valueOf(className), "result", params);
                 medusaSet.add((Medusa) result);
             }

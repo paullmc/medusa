@@ -34,10 +34,8 @@ public class ReflectUtils {
     public static Object invokeMethod(String className, String methodName, Object ...args) {
         try {
             Class<?> clazz = Class.forName(className);
-            Class<?>[] c = new Class<?>[2];
-            c[0] = Object.class;
-            c[1] = Object.class;
-            Method method = clazz.getMethod(methodName, c);
+            Class<?>[] classType = {Object.class, Object.class};
+            Method method = clazz.getMethod(methodName, classType);
             return method.invoke(clazz.newInstance(), args);
 
         } catch (ClassNotFoundException e) {
