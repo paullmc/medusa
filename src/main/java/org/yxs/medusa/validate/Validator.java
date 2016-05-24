@@ -2,7 +2,6 @@ package org.yxs.medusa.validate;
 
 import org.yxs.medusa.Entity;
 import org.yxs.medusa.Medusa;
-import org.yxs.medusa.annotation.NotNull;
 import org.yxs.medusa.exception.MedusaException;
 import org.yxs.medusa.reflect.ReflectUtils;
 
@@ -44,17 +43,14 @@ public class Validator {
             for (Entity entity : entitySet) {
                 Class<? extends Annotation> clazz = entity.getAnnotation();
                 Object className = clazz.getMethod("clazz").getDefaultValue();
-                Object[] params = {entity.getValue(), entity.getFieldName() + ":" + clazz.getMethod("value").getDefaultValue()};
+                Object[] params = {entity, clazz.getMethod("value").getDefaultValue()};
                 Object result = ReflectUtils.invokeMethod(String.valueOf(className), "result", params);
                 medusaSet.add((Medusa) result);
             }
             return medusaSet;
 
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             throw new MedusaException(e);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
         }
-        return null;
     }
 }

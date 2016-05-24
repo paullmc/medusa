@@ -1,6 +1,7 @@
 package org.yxs.medusa;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 
 /**
  * Created by 一线生 on 2016/5/22.
@@ -8,12 +9,12 @@ import java.lang.annotation.Annotation;
  */
 public class Entity {
     private Class<? extends Annotation> annotation;
-    private Object fieldName;
+    private Field field;
     private Object value;
 
-    public Entity(Class<? extends Annotation> annotation, Object fieldName, Object value) {
+    public Entity(Class<? extends Annotation> annotation, Field field, Object value) {
         this.annotation = annotation;
-        this.fieldName = fieldName;
+        this.field = field;
         this.value = value;
     }
 
@@ -25,12 +26,12 @@ public class Entity {
         this.annotation = annotation;
     }
 
-    public Object getFieldName() {
-        return fieldName;
+    public Field getField() {
+        return field;
     }
 
-    public void setFieldName(Object fieldName) {
-        this.fieldName = fieldName;
+    public void setField(Field field) {
+        this.field = field;
     }
 
     public Object getValue() {

@@ -2,9 +2,11 @@ package org.yxs;
 
 import org.yxs.medusa.Medusa;
 import org.yxs.medusa.annotation.NotNull;
+import org.yxs.medusa.annotation.Null;
 import org.yxs.medusa.validate.Validator;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Hello world!
@@ -17,7 +19,7 @@ public class App
         @NotNull
         private String uname;
 
-        @NotNull
+        @Null
         private String passwd;
 
         public String getUname() {
@@ -38,13 +40,15 @@ public class App
     }
     public static void main( String[] args ) {
         User user = new User();
-        user.setUname("asda");
         user.setPasswd("asdasd");
+        user.setUname("asd");
         System.out.println();
         Validator validator = new Validator();
         long start = new Date().getTime();
-        Medusa medusa = validator.popDeny(user);
-        System.out.println(medusa);
+        Set<Medusa> set = validator.result(user);
+        for (Medusa medusa : set) {
+            System.out.println(medusa.toString());
+        }
         System.out.println(new Date().getTime() - start);
     }
 }

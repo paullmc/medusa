@@ -6,7 +6,6 @@ import org.yxs.medusa.helper.AnnotationHelper;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,27 +25,29 @@ public class ReflectUtils {
             Class<? extends Annotation> annotationClazz;
             annotationClazz = AnnotationHelper.choice(field);
             if (null == annotationClazz) continue;
-            set.add(new Entity(annotationClazz, field.getName(), field.get(object)));
+            set.add(new Entity(annotationClazz, field, field.get(object)));
         }
         return set;
+    }
+
+    private static Class<?>[] getType(Object ...args) {
+        if (null == args) {
+            return null;
+        }
+        Class<?>[] classType = new Class<?>[args.length];
+        for (int i = 0; i < args.length; i++) {
+            classType[i] = args[i].getClass();
+        }
+        return classType;
     }
 
     public static Object invokeMethod(String className, String methodName, Object ...args) {
         try {
             Class<?> clazz = Class.forName(className);
-            Class<?>[] classType = {Object.class, Object.class};
-            Method method = clazz.getMethod(methodName, classType);
+            Method method = clazz.getMethod(methodName, getType(args));
             return method.invoke(clazz.newInstance(), args);
 
-        } catch (ClassNotFoundException e) {
-            throw new MedusaException(e);
-        } catch (NoSuchMethodException e) {
-            throw new MedusaException(e);
-        } catch (InvocationTargetException e) {
-            throw new MedusaException(e);
-        } catch (IllegalAccessException e) {
-            throw new MedusaException(e);
-        } catch (InstantiationException e) {
+        } catch (Exception e) {
             throw new MedusaException(e);
         }
     }
