@@ -12,11 +12,16 @@ import java.lang.annotation.Annotation;
 public abstract class AbstractValidate {
 
     public Annotation annotation;
+    public String msg;
 
-    public abstract boolean isValidate(Object object);
+    public abstract boolean validate(Object object);
 
-    public Medusa result(Entity entity, String msg) {
-        boolean flag = isValidate(entity.getValue());
-        return new Medusa(flag, entity.getField(), flag ? "" : msg);
+    public abstract void init();
+
+    public Medusa result(Entity entity) {
+        annotation = entity.getAnnotation();
+        init();
+        boolean flag = validate(entity.getValue());
+        return new Medusa(flag, entity.getField(), flag ? "" : this.msg);
     }
 }

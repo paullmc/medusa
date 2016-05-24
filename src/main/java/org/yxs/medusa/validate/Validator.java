@@ -3,6 +3,7 @@ package org.yxs.medusa.validate;
 import org.yxs.medusa.Entity;
 import org.yxs.medusa.Medusa;
 import org.yxs.medusa.exception.MedusaException;
+import org.yxs.medusa.helper.AnnotationHelper;
 import org.yxs.medusa.reflect.ReflectUtils;
 
 import java.lang.annotation.Annotation;
@@ -14,6 +15,22 @@ import java.util.Set;
  *
  */
 public class Validator {
+
+    private Object object;
+
+    public static Validator newInstance() {
+        return new Validator();
+    }
+
+    public static Validator newInstance(Object object) {
+        return new Validator(object);
+    }
+
+    public Validator() {}
+
+    public Validator(Object object) {
+        this.object = object;
+    }
 
     public boolean validate(Object object) {
         Set<Medusa> medusaSet = result(object);
@@ -36,15 +53,19 @@ public class Validator {
         return null;
     }
 
+    public Set<Medusa> result() {
+        return result(this.object);
+    }
+
     public Set<Medusa> result(Object object) {
         try {
             Set<Entity> entitySet = ReflectUtils.getSet(object);
             Set<Medusa> medusaSet = new HashSet<Medusa>();
             for (Entity entity : entitySet) {
-                Class<? extends Annotation> clazz = entity.getAnnotation();
-                Object className = clazz.getMethod("clazz").getDefaultValue();
-                Object[] params = {entity, clazz.getMethod("value").getDefaultValue()};
-                Object result = ReflectUtils.invokeMethod(String.valueOf(className), "result", params);
+                Annotation annotation = entity.getAnnotation();
+                Class<? extends Annotation> clazz = AnnotationHelper.choice(annotation);
+                Object[] params = {entity};
+                Object result = ReflectUtils.invokeMethod(String.valueOf(clazz.getMethod("clazz").getDefaultValue()), "result", params);
                 medusaSet.add((Medusa) result);
             }
             return medusaSet;

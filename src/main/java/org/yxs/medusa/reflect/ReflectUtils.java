@@ -22,10 +22,9 @@ public class ReflectUtils {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
-            Class<? extends Annotation> annotationClazz;
-            annotationClazz = AnnotationHelper.choice(field);
-            if (null == annotationClazz) continue;
-            set.add(new Entity(annotationClazz, field, field.get(object)));
+            Annotation annotation = AnnotationHelper.choice(field);
+            if (null == annotation) continue;
+            set.add(new Entity(annotation, field, field.get(object)));
         }
         return set;
     }

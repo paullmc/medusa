@@ -8,21 +8,21 @@ import java.lang.reflect.Field;
  *
  */
 public class Entity {
-    private Class<? extends Annotation> annotation;
+    private Annotation annotation;
     private Field field;
     private Object value;
 
-    public Entity(Class<? extends Annotation> annotation, Field field, Object value) {
+    public Entity(Annotation annotation, Field field, Object value) {
         this.annotation = annotation;
         this.field = field;
         this.value = value;
     }
 
-    public Class<? extends Annotation> getAnnotation() {
+    public Annotation getAnnotation() {
         return annotation;
     }
 
-    public void setAnnotation(Class<? extends Annotation> annotation) {
+    public void setAnnotation(Annotation annotation) {
         this.annotation = annotation;
     }
 

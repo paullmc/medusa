@@ -1,6 +1,6 @@
 package org.yxs.medusa.validate;
 
-import java.lang.annotation.Annotation;
+import org.yxs.medusa.annotation.Null;
 
 /**
  * Created by 一线生 on 2016/5/21.
@@ -8,9 +8,12 @@ import java.lang.annotation.Annotation;
  */
 public class NullValidate extends AbstractValidate {
 
-    private Annotation annotation;
-
-    public boolean isValidate(Object object) {
+    public boolean validate(Object object) {
         return null == object;
+    }
+
+    public void init() {
+        Null nullAnnotation = (Null) annotation;
+        this.msg = nullAnnotation.value();
     }
 }
