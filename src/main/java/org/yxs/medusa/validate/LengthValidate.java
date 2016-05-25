@@ -9,10 +9,12 @@ import org.yxs.medusa.annotation.Length;
 public class LengthValidate extends AbstractValidate<Length> {
 
     public boolean validate(Object object) {
-        return false;
+        if (null == object) return false;
+        String arg = String.valueOf(object);
+        return arg.length() >= annotation.min() && arg.length() <= annotation.max();
     }
 
     public void init() {
-
+        this.msg = annotation.value();
     }
 }

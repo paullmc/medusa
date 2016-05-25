@@ -17,4 +17,6 @@ import java.lang.annotation.Target;
 public @interface Size {
     Class<?> clazz() default SizeValidate.class;
     String value() default Message.SIZE;
+    int max();
+    int min();
 }

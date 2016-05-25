@@ -17,4 +17,6 @@ import java.lang.annotation.Target;
 public @interface Length {
     Class<?> clazz() default LengthValidate.class;
     String value() default Message.LENGTH;
+    int max();
+    int min();
 }

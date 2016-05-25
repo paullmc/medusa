@@ -5,14 +5,16 @@ import org.yxs.medusa.annotation.*;
 import org.yxs.medusa.annotation.Number;
 import org.yxs.medusa.validate.Validator;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class Example
 {
     public static class User {
 
@@ -36,6 +38,12 @@ public class App
 
         @Pattern(pattern = "^1")
         private String pattern;
+
+        @Length(max = 10, min = 2)
+        private String length;
+
+        @Size(max = 10, min = 2)
+        private List<String> list;
 
         public String getUname() {
             return uname;
@@ -92,16 +100,33 @@ public class App
         public void setPattern(String pattern) {
             this.pattern = pattern;
         }
+
+        public String getLength() {
+            return length;
+        }
+
+        public void setLength(String length) {
+            this.length = length;
+        }
+
+        public List<String> getList() {
+            return list;
+        }
+
+        public void setList(List<String> list) {
+            this.list = list;
+        }
     }
     public static void main( String[] args ) {
         User user = new User();
-        user.setPasswd("asdasd");
-        user.setUname("asd");
+        user.setPasswd("1ffaa");
+        user.setUname("gfaa");
         user.setEmail("97545465@163.com");
         user.setEmpty("");
         user.setBlank("");
         user.setNumber("1");
         user.setPattern("12");
+
         System.out.println();
         Validator validator = Validator.newInstance(user);
         long start = new Date().getTime();
