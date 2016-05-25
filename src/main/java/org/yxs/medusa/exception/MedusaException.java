@@ -1,7 +1,8 @@
 package org.yxs.medusa.exception;
 
 /**
- * Created by medusa on 2016/5/23.
+ * Created by 一线生 on 2016/5/23.
+ *
  */
 public class MedusaException extends RuntimeException {
 

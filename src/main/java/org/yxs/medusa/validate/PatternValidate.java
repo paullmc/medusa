@@ -3,7 +3,7 @@ package org.yxs.medusa.validate;
 import org.yxs.medusa.annotation.Pattern;
 
 /**
- * Created by medusa on 2016/5/24.
+ * Created by 一线生 on 2016/5/24.
  *
  */
 public class PatternValidate extends AbstractValidate<Pattern> {

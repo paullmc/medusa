@@ -5,7 +5,7 @@ import org.yxs.medusa.annotation.Size;
 import java.util.List;
 
 /**
- * Created by medusa on 2016/5/25.
+ * Created by 一线生 on 2016/5/25.
  *
  */
 public class SizeValidate extends AbstractValidate<Size> {
