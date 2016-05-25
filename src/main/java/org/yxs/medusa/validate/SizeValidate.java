@@ -1,15 +1,15 @@
 package org.yxs.medusa.validate;
 
-import org.yxs.medusa.annotation.Null;
+import org.yxs.medusa.annotation.Size;
 
 /**
- * Created by 一线生 on 2016/5/21.
+ * Created by medusa on 2016/5/25.
  *
  */
-public class NullValidate extends AbstractValidate<Null> {
+public class SizeValidate extends AbstractValidate<Size> {
 
     public boolean validate(Object object) {
-        return null == object;
+        return false;
     }
 
     public void init() {

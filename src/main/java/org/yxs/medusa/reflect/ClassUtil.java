@@ -41,7 +41,7 @@ public class ClassUtil {
     }
 
     /**
-     * 获去基础包下的所有类
+     * 获取基础包下的所有类
      * @param packageName
      * @return
      */

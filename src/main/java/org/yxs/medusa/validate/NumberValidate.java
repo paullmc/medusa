@@ -4,8 +4,9 @@ import org.yxs.medusa.annotation.Number;
 
 /**
  * Created by medusa on 2016/5/24.
+ *
  */
-public class NumberValidate extends AbstractValidate {
+public class NumberValidate extends AbstractValidate<Number> {
     public boolean validate(Object object) {
         try {
             String arg = String.valueOf(object);
@@ -17,7 +18,6 @@ public class NumberValidate extends AbstractValidate {
     }
 
     public void init() {
-        Number number = (Number) annotation;
-        this.msg = number.value();
+        this.msg = annotation.value();
     }
 }

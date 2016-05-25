@@ -1,6 +1,7 @@
 package org.yxs.medusa.annotation;
 
 import org.yxs.medusa.constant.Message;
+import org.yxs.medusa.validate.PatternValidate;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,7 +15,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Pattern {
-    String clazz() default "org.yxs.medusa.validate.PatternValidate";
+    Class<?> clazz() default PatternValidate.class;
     String value() default Message.PATTERN;
     String pattern();
 }

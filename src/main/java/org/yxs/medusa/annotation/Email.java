@@ -1,6 +1,7 @@
 package org.yxs.medusa.annotation;
 
 import org.yxs.medusa.constant.Message;
+import org.yxs.medusa.validate.EmailValidate;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,6 +15,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Email {
-    String clazz() default "org.yxs.medusa.validate.EmailValidate";
+    Class<?> clazz() default EmailValidate.class;
     String value() default Message.EMAIL;
 }

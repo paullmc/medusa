@@ -1,6 +1,7 @@
 package org.yxs.medusa.annotation;
 
 import org.yxs.medusa.constant.Message;
+import org.yxs.medusa.validate.NotEmptyValidate;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,6 +15,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotEmpty {
-    String clazz() default "org.yxs.medusa.validate.NotEmptyValidate";
+    Class<?> clazz() default NotEmptyValidate.class;
     String value() default Message.NOT_EMPTY;
 }

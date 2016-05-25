@@ -1,6 +1,7 @@
 package org.yxs.medusa.annotation;
 
 import org.yxs.medusa.constant.Message;
+import org.yxs.medusa.validate.NumberValidate;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,6 +16,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Number {
-    String clazz() default "org.yxs.medusa.validate.NumberValidate";
+    Class<?> clazz() default NumberValidate.class;
     String value() default Message.NUMBER;
 }
