@@ -48,6 +48,26 @@ public class Validator {
 
     /**
      * author: 一线生
+     * explain: 校验方法，该方法校验整个对象的所有注解，然后返回true/false
+     *      该方法无参，使用{@link Validator#newInstance(Object)} 方法，可以直接调用此方法得到校验结果
+     * date 2016/5/25 - 11:52
+     **/
+    public boolean validate() {
+        return validate(this.object);
+    }
+
+    /**
+     * author: 一线生
+     * explain: 弹出第一个校验结果
+     *     该方法无参，使用{@link Validator#newInstance(Object)} 方法，可以直接调用此方法得到校验结果
+     * date 2016/5/25 - 11:53
+     **/
+    public Medusa pop() {
+        return pop(this.object);
+    }
+
+    /**
+     * author: 一线生
      * explain: 弹出第一个校验结果
      * @param object 待校验的对象
      * date 2016/5/25 - 11:53
