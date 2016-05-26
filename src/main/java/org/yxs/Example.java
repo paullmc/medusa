@@ -5,7 +5,6 @@ import org.yxs.medusa.annotation.*;
 import org.yxs.medusa.annotation.Number;
 import org.yxs.medusa.validate.Validator;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;

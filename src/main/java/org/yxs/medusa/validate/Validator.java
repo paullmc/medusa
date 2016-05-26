@@ -26,9 +26,9 @@ public class Validator {
         return new Validator(object);
     }
 
-    public Validator() {}
+    private Validator() {}
 
-    public Validator(Object object) {
+    private Validator(Object object) {
         this.object = object;
     }
 
