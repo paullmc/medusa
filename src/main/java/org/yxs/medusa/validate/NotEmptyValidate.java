@@ -13,6 +13,6 @@ public class NotEmptyValidate extends AbstractValidate<NotEmpty> {
     }
 
     public void init() {
-        this.msg = annotation.value();
+        this.setMsg(annotation.value());
     }
 }

@@ -18,6 +18,6 @@ public class EmailValidate extends AbstractValidate<Email> {
     }
 
     public void init() {
-        this.msg = annotation.value();
+        this.setMsg(annotation.value());
     }
 }

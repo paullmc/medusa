@@ -18,6 +18,6 @@ public class NumberValidate extends AbstractValidate<Number> {
     }
 
     public void init() {
-        this.msg = annotation.value();
+        this.setMsg(annotation.value());
     }
 }

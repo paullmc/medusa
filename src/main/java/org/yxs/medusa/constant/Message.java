@@ -5,6 +5,7 @@ package org.yxs.medusa.constant;
  *
  */
 public interface Message {
+    String ALLOW = "校验通过";
     String NULL = "必须为空";
     String NOT_NULL = "不能为空";
     String NUMBER = "必须为整型数字";

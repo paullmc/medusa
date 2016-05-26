@@ -16,6 +16,6 @@ public class NotBlankValidate extends AbstractValidate<NotBlank> {
     }
 
     public void init() {
-        this.msg = annotation.value();
+        this.setMsg(annotation.value());
     }
 }

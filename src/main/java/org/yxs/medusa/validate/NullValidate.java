@@ -13,6 +13,6 @@ public class NullValidate extends AbstractValidate<Null> {
     }
 
     public void init() {
-        this.msg = annotation.value();
+        this.setMsg(annotation.value());
     }
 }

@@ -17,6 +17,6 @@ public class SizeValidate extends AbstractValidate<Size> {
     }
 
     public void init() {
-        this.msg = annotation.value();
+        this.setMsg(annotation.value());
     }
 }

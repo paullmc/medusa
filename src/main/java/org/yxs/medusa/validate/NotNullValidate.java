@@ -13,5 +13,6 @@ public class NotNullValidate extends AbstractValidate<NotNull> {
     }
 
     public void init() {
+        this.setMsg(annotation.value());
     }
 }

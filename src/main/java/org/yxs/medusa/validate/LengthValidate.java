@@ -15,6 +15,6 @@ public class LengthValidate extends AbstractValidate<Length> {
     }
 
     public void init() {
-        this.msg = annotation.value();
+        this.setMsg(annotation.value());
     }
 }

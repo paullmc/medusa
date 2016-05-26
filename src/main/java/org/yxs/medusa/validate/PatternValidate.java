@@ -15,6 +15,6 @@ public class PatternValidate extends AbstractValidate<Pattern> {
     }
 
     public void init() {
-        this.msg = annotation.value();
+        this.setMsg(annotation.value());
     }
 }
