@@ -93,6 +93,16 @@ public class Validator {
 
     /**
      * author: 一线生
+     * explain: 弹出第一个错误的校验结果
+     *      该方法无参，使用{@link Validator#newInstance(Object)} 方法，可以直接调用此方法得到校验结果
+     * date 2016/5/25 - 11:53
+     **/
+    public Medusa popDeny() {
+        return popDeny(this.object);
+    }
+
+    /**
+     * author: 一线生
      * explain: 获取校验返回值 该方法校验所有的注解，并返回校验结果Set<Medusa>
      *     该方法无参，使用{@link Validator#newInstance(Object)} 方法，可以直接调用此方法得到校验结果
      * date 2016/5/25 - 11:54
